@@ -88,8 +88,10 @@ var _data = [["Afghanistan","AF","Badakhshan~BDS|Badghis~BDG|Baghlan~BGL|Balkh~B
     var regionElement = document.getElementById(regionID);
     if (regionElement) {
       _initRegionField(regionElement);
+      _updateRegionFieldStatus(countryElement, regionElement);
 
       countryElement.onchange = function() {
+        _updateRegionFieldStatus(countryElement, regionElement);
         _populateRegionFields(countryElement, regionElement);
       };
 
@@ -112,6 +114,17 @@ var _data = [["Afghanistan","AF","Badakhshan~BDS|Badghis~BDG|Baghlan~BGL|Balkh~B
 
     countryElement.setAttribute("data-crs-loaded", "true");
 	};
+
+  /**
+   * _updateRegionFieldStatus
+   * @description This function disables the region field if the user set 'data-disable-if-empty'
+   * and there are no available regions for the selected country or a placeholder is selected
+   */
+  var _updateRegionFieldStatus = function(countryElement, regionElement) {
+    var disableIfEmpty = regionElement.getAttribute('data-disable-if-empty');
+    var disableRegionFields = (disableIfEmpty == 'true' && !countryElement.value) ? true : false;
+    regionElement.disabled = disableRegionFields;
+  }
 
 	var _initRegionField = function(el) {
 		var customOptionStr = el.getAttribute("data-blank-option");

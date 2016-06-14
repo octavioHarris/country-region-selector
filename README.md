@@ -107,6 +107,8 @@ you show a 2-code abbreviation instead. **Please note that all the abbreviations
 [this thread](https://github.com/benkeen/country-region-selector/issues/2) that explains how the structure works.** If 
 a region field is set to 2-char and a user user selects a country that doesn't have a region, it will show the full
 country name instead.
+- `data-disable-if-empty` - optional. If set to true, when a placeholder option is selected in the country field,
+the region field will be disabled until a valid country selection is made.
 
 
 ### Working with dynamic HTML 
